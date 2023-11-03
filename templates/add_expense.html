@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Expense</title>
+</head>
+<body>
+    <h1>Add New Expense</h1>
+    <form action="/user/{{ user.username }}/add_expense" method="post">
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount"><br>
+        <label for="category">category:</label>
+        <input type="text" id="category" name="category"><br>
+        <input type="submit" value="Add Expense">
+    </form>
+</body>
+</html>

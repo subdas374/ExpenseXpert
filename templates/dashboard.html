@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        /* .card {
+            border: 1px solid #ccc;
+            border-radius: 20px;
+        }
+        .card-body {
+            padding: 5px 10px;
+        }
+        .card {
+            width: 325px;
+            background-color: #45a049;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+        }
+        .card p {
+        }
+        .table thead tr {
+            background-color: #4CAF50;
+        } */
+
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}!</h1>
+
+    <!-- Add the image tag here -->
+    <div class="card-container">
+        <div class="card">
+            <div class="card-body">
+                <h2>Total Expenses</h2>
+                <p>Total Amount: ₹{{ total_expenses }}</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h2>Add New Expense:</h2>
+                <form action="/user/{{ user.username }}/add_expense" method="post">
+                    <label for="amount">Amount:</label>
+                    <input type="text" id="amount" name="amount">
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category">
+                    <input type="submit" value="Add Expense">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Add a table to display expenses -->
+<!-- Add a table to display expenses -->
+<h2>Your Expenses:</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">SL No.</th>
+            <th scope="col">Date</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for expense in expenses %}
+            <tr>
+                <td>{{ loop.index }}</td> <!-- loop.index starts from 1 -->
+                <td>{{ expense[0].strftime("%Y-%m-%d %H:%M:%S") }}</td> <!-- Format the date as needed -->
+                <td>₹{{ expense[1]}}</td>
+                <td>{{ expense[2]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+</body>
+</html>
